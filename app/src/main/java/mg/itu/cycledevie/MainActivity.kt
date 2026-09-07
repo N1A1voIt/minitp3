@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnPartager).setOnClickListener {
+            Log.i(tag,"Clicked")
             partagerCollecte()
         }
     }
@@ -45,6 +46,13 @@ class MainActivity : AppCompatActivity() {
         // avec le texte "Collecte du jour : 4,5 kg de vanille",
         // et le lancer via Intent.createChooser(...).
         // Modèle : diapositive « Les Intents » du cours.
+        val btnIntent = Intent().apply {
+            action=Intent.ACTION_SEND
+            type="text/plain"
+            putExtra(Intent.EXTRA_TEXT,"Collecte du jour : 4,5 kg de vanille")
+        }
+        val chooser = Intent.createChooser(btnIntent,"Share via")
+        startActivity(chooser)
         Log.i(tag, "partagerCollecte — à compléter !")
     }
 
